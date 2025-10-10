@@ -19,7 +19,7 @@
             --dark: #111111;
             --gray: #2A2A2A;
             --light-gray: #3A3A3A;
-            --transition: all 0.3s ease;
+            --transition: all 0.5s ease;
         }
 
         body {
@@ -40,21 +40,20 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            position: relative;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.5s ease;
         }
 
         .page.active {
             display: flex;
-            animation: pageFadeIn 0.4s ease-out forwards;
+            opacity: 1;
         }
 
-        @keyframes pageFadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+        .page.fade-out {
+            opacity: 0;
         }
 
         h1, h2, h3 {
@@ -136,6 +135,7 @@
             justify-content: center;
             align-items: center;
             backdrop-filter: blur(10px);
+            -webkit-tap-highlight-color: transparent;
         }
 
         .btn::before {
@@ -211,14 +211,12 @@
             border-radius: 15px;
             opacity: 0;
             transform: translateY(20px);
-            animation: contentAppear 0.6s ease-out 0.3s forwards;
+            transition: all 0.5s ease;
         }
 
-        @keyframes contentAppear {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .content-block.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .highlight {
@@ -278,36 +276,6 @@
             display: block;
         }
 
-        .page-title {
-            font-size: clamp(2rem, 10vw, 3rem);
-            color: var(--primary);
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            position: relative;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-            margin-bottom: 40px;
-            text-align: center;
-            opacity: 0;
-            transform: scale(0.9);
-            animation: pageTitleAnimation 1.5s ease-in-out forwards;
-        }
-
-        @keyframes pageTitleAnimation {
-            0% {
-                opacity: 0;
-                transform: scale(0.9);
-            }
-            50% {
-                opacity: 1;
-                transform: scale(1);
-            }
-            100% {
-                opacity: 0;
-                transform: scale(1.1);
-            }
-        }
-
         .page-content {
             width: 100%;
             max-width: 800px;
@@ -328,6 +296,7 @@
             flex-direction: column;
             text-align: center;
             width: 100%;
+            height: 100%;
         }
 
         .service-card {
@@ -341,7 +310,12 @@
             border-radius: 15px;
             opacity: 0;
             transform: translateY(20px);
-            animation: contentAppear 0.6s ease-out 0.3s forwards;
+            transition: all 0.5s ease;
+        }
+
+        .service-card.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .service-card h3 {
@@ -419,7 +393,12 @@
             border-radius: 15px;
             opacity: 0;
             transform: translateY(20px);
-            animation: contentAppear 0.6s ease-out 0.3s forwards;
+            transition: all 0.5s ease;
+        }
+
+        .founder-section.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .founder-section h3 {
@@ -450,16 +429,22 @@
             }
         }
 
-        .page-content-wrapper {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            animation: contentAppear 0.6s ease-out forwards;
+        .section-title {
+            font-size: clamp(1.8rem, 8vw, 2.5rem);
+            color: var(--primary);
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.5s ease;
         }
 
-        .page-content-wrapper.active {
-            display: flex;
+        .section-title.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* Мобильная адаптация */
@@ -520,11 +505,6 @@
                 margin-bottom: 30px;
             }
 
-            .page-title {
-                font-size: 1.8rem;
-                margin-bottom: 30px;
-            }
-
             .btn {
                 padding: 14px 18px;
                 font-size: 0.85rem;
@@ -552,7 +532,7 @@
 <body>
     <!-- Главная страница -->
     <div id="main-page" class="page active">
-        <div class="page-content centered">
+        <div class="centered">
             <h1 class="main-title">DYNASTY AGENCY</h1>
             <div class="menu">
                 <button class="btn" onclick="showPage('agency-page')">АГЕНСТВО</button>
@@ -566,9 +546,9 @@
     <!-- Страница Агентства -->
     <div id="agency-page" class="page">
         <div class="centered">
-            <h1 class="page-title">АГЕНСТВО</h1>
+            <h1 class="section-title">АГЕНСТВО</h1>
         </div>
-        <div class="page-content-wrapper active">
+        <div class="page-content">
             <div class="content-block">
                 <h2>Увеличим ваш чистый доход <span class="text-highlight">В НЕСКОЛЬКО РАЗ</span> через социальные сети и личный бренд</h2>
             </div>
@@ -594,9 +574,9 @@
     <!-- Страница Услуг -->
     <div id="services-page" class="page">
         <div class="centered">
-            <h1 class="page-title">УСЛУГИ</h1>
+            <h1 class="section-title">УСЛУГИ</h1>
         </div>
-        <div class="page-content-wrapper active">
+        <div class="page-content">
             <div class="menu">
                 <button class="btn" onclick="showPage('editing-page')">МОНТАЖ</button>
                 <button class="btn" onclick="showPage('production-page')">ПРОДЮСИРОВАНИЕ</button>
@@ -609,9 +589,9 @@
     <!-- Страница Монтажа -->
     <div id="editing-page" class="page">
         <div class="centered">
-            <h1 class="page-title">МОНТАЖ</h1>
+            <h1 class="section-title">МОНТАЖ</h1>
         </div>
-        <div class="page-content-wrapper active">
+        <div class="page-content">
             <div class="service-card">
                 <div class="premium-badge">Премиум качество</div>
                 <h2>1. Объёмный Формат</h2>
@@ -666,9 +646,9 @@
     <!-- Страница Продюсирования -->
     <div id="production-page" class="page">
         <div class="centered">
-            <h1 class="page-title">ПРОДЮСИРОВАНИЕ</h1>
+            <h1 class="section-title">ПРОДЮСИРОВАНИЕ</h1>
         </div>
-        <div class="page-content-wrapper active">
+        <div class="page-content">
             <div class="service-card">
                 <h2>ЧТО ВКЛЮЧЕНО И ЧТО ВЫ ПОЛУЧИТЕ</h2>
                 
@@ -721,9 +701,9 @@
     <!-- Страница Программирования -->
     <div id="programming-page" class="page">
         <div class="centered">
-            <h1 class="page-title">ПРОГРАММИРОВАНИЕ</h1>
+            <h1 class="section-title">ПРОГРАММИРОВАНИЕ</h1>
         </div>
-        <div class="page-content-wrapper active">
+        <div class="page-content">
             <div class="service-card">
                 <h2>Создадим для вас Telegram бота</h2>
                 <p>Мы разработаем функционального Telegram бота, который обеспечит удобство взаимодействия с вашими клиентами, позволит эффективно представить ваш продукт или услуги и автоматизирует ключевые бизнес-процессы.</p>
@@ -750,9 +730,9 @@
     <!-- Страница Кейсов -->
     <div id="cases-page" class="page">
         <div class="centered">
-            <h1 class="page-title">КЕЙСЫ</h1>
+            <h1 class="section-title">КЕЙСЫ</h1>
         </div>
-        <div class="page-content-wrapper active">
+        <div class="page-content">
             <div class="service-card">
                 <h2>Мы создаём <span class="text-highlight">САМЫЙ ЭФФЕКТИВНЫЙ И ПРОДАЮЩИЙ</span> контент</h2>
                 <p>Поэтому сотрудничаем с ведущими инфлюенсерами СНГ в медиапространстве:</p>
@@ -773,9 +753,9 @@
     <!-- Страница Основателя -->
     <div id="founder-page" class="page">
         <div class="centered">
-            <h1 class="page-title">ОСНОВАТЕЛЬ АГЕНСТВА</h1>
+            <h1 class="section-title">ОСНОВАТЕЛЬ АГЕНСТВА</h1>
         </div>
-        <div class="page-content-wrapper active">
+        <div class="page-content">
             <div class="founder-section">
                 <h2>КТО Я И ПОЧЕМУ МНЕ СТОИТ ДОВЕРЯТЬ?</h2>
             </div>
@@ -810,33 +790,39 @@
             
             isTransitioning = true;
             
-            // Скрыть все страницы
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
+            // Плавно скрыть текущую страницу
+            const currentPageElement = document.getElementById(currentPage);
+            currentPageElement.classList.add('fade-out');
             
-            // Показать выбранную страницу
-            const newPage = document.getElementById(pageId);
-            newPage.classList.add('active');
-            
-            // Скрыть контент и показать анимированный заголовок
-            const contentWrapper = newPage.querySelector('.page-content-wrapper');
-            if (contentWrapper) {
-                contentWrapper.classList.remove('active');
+            // Через 300мс показать новую страницу
+            setTimeout(() => {
+                // Скрыть все страницы
+                document.querySelectorAll('.page').forEach(page => {
+                    page.classList.remove('active');
+                    page.classList.remove('fade-out');
+                });
                 
-                // Через 1.5 секунды показать контент (быстрее чем было)
+                // Показать выбранную страницу
+                const newPage = document.getElementById(pageId);
+                newPage.classList.add('active');
+                
+                // Показать контент с задержкой
                 setTimeout(() => {
-                    contentWrapper.classList.add('active');
+                    const contentBlocks = newPage.querySelectorAll('.content-block, .service-card, .founder-section, .section-title');
+                    contentBlocks.forEach((block, index) => {
+                        setTimeout(() => {
+                            block.classList.add('active');
+                        }, index * 100);
+                    });
+                    
                     isTransitioning = false;
-                }, 1500);
-            } else {
-                isTransitioning = false;
-            }
-            
-            currentPage = pageId;
-            
-            // Прокрутка к верху страницы
-            window.scrollTo(0, 0);
+                }, 100);
+                
+                currentPage = pageId;
+                
+                // Прокрутка к верху страницы
+                window.scrollTo(0, 0);
+            }, 300);
         }
 
         // Инициализация
