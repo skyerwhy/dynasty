@@ -1,1 +1,886 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DYNASTY AGENCY | Продюсерское агентство</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        :root {
+            --primary: #FFFFFF;
+            --secondary: #F5F5F7;
+            --accent: #FFD700;
+            --dark: #111111;
+            --gray: #2A2A2A;
+            --light-gray: #3A3A3A;
+            --transition: all 0.4s ease;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0A0A0A 0%, #1A1A1A 100%);
+            color: var(--primary);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+            font-weight: 400;
+            min-height: 100vh;
+        }
+
+        .page {
+            min-height: 100vh;
+            width: 100%;
+            padding: 30px 20px;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .page.active {
+            display: flex;
+            animation: pageFadeIn 0.6s ease-out forwards;
+        }
+
+        @keyframes pageFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1, h2, h3 {
+            text-align: center;
+            margin-bottom: 25px;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .main-title {
+            font-size: 2.8rem;
+            margin-bottom: 50px;
+            color: var(--primary);
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            position: relative;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            animation: titlePulse 6s ease-in-out infinite;
+        }
+
+        @keyframes titlePulse {
+            0% {
+                transform: scale(1);
+            }
+            25% {
+                transform: scale(1.03);
+            }
+            50% {
+                transform: scale(0.98);
+            }
+            75% {
+                transform: scale(1.01);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .main-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 2px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+            opacity: 0.8;
+        }
+
+        .menu {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+            max-width: 380px;
+        }
+
+        .btn {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--primary);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px 30px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border-radius: 50px;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: 0.6s;
+        }
+
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), transparent);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .btn:hover::after {
+            opacity: 1;
+        }
+
+        .btn-primary {
+            background: rgba(255, 215, 0, 0.1);
+            color: var(--primary);
+            font-weight: 600;
+            padding: 22px 35px;
+            margin: 25px auto;
+            display: block;
+            max-width: 320px;
+            font-size: 1.2rem;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            border-radius: 50px;
+        }
+
+        .btn-primary:hover {
+            background: rgba(255, 215, 0, 0.15);
+            border-color: rgba(255, 215, 0, 0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+            transition: 0.6s;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .content-block {
+            width: 100%;
+            max-width: 750px;
+            margin: 30px 0;
+            padding: 35px;
+            background: rgba(30, 30, 30, 0.7);
+            backdrop-filter: blur(15px);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+        }
+
+        .content-block.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .highlight {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 18px;
+            margin: 18px 0;
+            border-radius: 12px;
+            border-left: 3px solid var(--accent);
+            transition: var(--transition);
+        }
+
+        .highlight:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateX(5px);
+        }
+
+        .price {
+            font-weight: 700;
+            font-size: 1.6rem;
+            margin: 20px 0;
+            text-align: center;
+            color: var(--accent);
+        }
+
+        .service-list {
+            list-style-type: none;
+            margin: 25px 0;
+        }
+
+        .service-list li {
+            margin: 18px 0;
+            padding: 18px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            transition: var(--transition);
+            position: relative;
+            padding-left: 50px;
+            border-radius: 12px;
+        }
+
+        .service-list li::before {
+            content: '→';
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .service-list li:hover {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .back-btn {
+            margin: 50px auto 0;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 18px 35px;
+            max-width: 280px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            display: block;
+        }
+
+        .step {
+            display: none;
+        }
+
+        .step.active {
+            display: block;
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .section-title {
+            color: var(--primary);
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: titleAppear 1s ease-out 0.3s forwards;
+        }
+
+        @keyframes titleAppear {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 2px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+            opacity: 0.8;
+        }
+
+        .page-content {
+            width: 100%;
+            max-width: 850px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .text-highlight {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .centered {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .service-card {
+            background: rgba(30, 30, 30, 0.7);
+            padding: 30px;
+            margin: 25px 0;
+            transition: var(--transition);
+            width: 100%;
+            max-width: 550px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            opacity: 0;
+            transform: translateY(30px);
+            border-radius: 20px;
+            animation: cardAppear 0.8s ease-out forwards;
+        }
+
+        @keyframes cardAppear {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .service-card:hover {
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .service-card h3 {
+            color: var(--accent);
+            margin-bottom: 20px;
+            font-size: 1.6rem;
+            font-weight: 600;
+        }
+
+        .agency-title-fade {
+            animation: titleFade 3s ease-in-out forwards;
+        }
+
+        @keyframes titleFade {
+            0% {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            30% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            70% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(1.1);
+            }
+        }
+
+        .premium-badge {
+            display: inline-block;
+            background: rgba(255, 215, 0, 0.1);
+            color: var(--accent);
+            padding: 8px 18px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 20px;
+        }
+
+        .trust-indicators {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .trust-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px 25px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: itemAppear 0.6s ease-out forwards;
+        }
+
+        @keyframes itemAppear {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .trust-item::before {
+            content: '✓';
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .client-logos {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 40px 0;
+            opacity: 0.8;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .client-logo {
+            font-weight: 500;
+            font-size: 1.1rem;
+            padding: 15px 25px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            text-align: left;
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: logoAppear 0.6s ease-out forwards;
+        }
+
+        @keyframes logoAppear {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .client-logo:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateX(5px);
+        }
+
+        .founder-section {
+            background: rgba(30, 30, 30, 0.7);
+            padding: 30px;
+            margin: 20px 0;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+            border-radius: 20px;
+            animation: sectionAppear 0.8s ease-out forwards;
+        }
+
+        @keyframes sectionAppear {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .founder-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .founder-section h3 {
+            color: var(--accent);
+            margin-bottom: 15px;
+            text-align: left;
+            font-size: 1.4rem;
+        }
+
+        .founder-section p {
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+
+        .service-title {
+            font-size: 2.8rem;
+            color: var(--primary);
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            position: relative;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: titleAppear 1s ease-out 0.3s forwards;
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .delayed-appear {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: delayedAppear 0.8s ease-out 0.5s forwards;
+        }
+
+        @keyframes delayedAppear {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Главная страница -->
+    <div id="main-page" class="page active">
+        <div class="page-content">
+            <h1 class="main-title">DYNASTY AGENCY</h1>
+            <div class="menu">
+                <button class="btn" onclick="showPage('agency-page')">АГЕНСТВО</button>
+                <button class="btn" onclick="showPage('services-page')">УСЛУГИ</button>
+                <button class="btn" onclick="showPage('cases-page')">КЕЙСЫ</button>
+                <button class="btn" onclick="showPage('founder-page')">ОСНОВАТЕЛЬ</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Страница Агентства -->
+    <div id="agency-page" class="page">
+        <div class="page-content">
+            <div id="agency-title" class="step active centered">
+                <h1 class="main-title agency-title-fade">DYNASTY AGENCY</h1>
+            </div>
+            <div id="agency-content" class="step">
+                <h1 class="section-title">АГЕНСТВО</h1>
+                <div class="content-block">
+                    <h2>Увеличим ваш чистый доход <span class="text-highlight">В НЕСКОЛЬКО РАЗ</span> через социальные сети и личный бренд</h2>
+                </div>
+                <div class="content-block">
+                    <h2>Мы предлагаем <span class="text-highlight">ПОЛНЫЙ КОМПЛЕКС</span> услуг, необходимых для прорыва в медиапространстве</h2>
+                </div>
+                <div class="content-block">
+                    <h2>Если вы:</h2>
+                    <div class="highlight">Предприниматель</div>
+                    <div class="highlight">Эксперт в любой сфере</div>
+                    <div class="highlight">Владелец бизнеса или агентства</div>
+                    <h3>— это именно то, что вы искали</h3>
+                </div>
+                <div class="content-block centered">
+                    <h2>НАЧНИТЕ РАБОТАТЬ С НАМИ ПРЯМО СЕЙЧАС</h2>
+                    <button class="btn btn-primary pulse" onclick="window.open('https://t.me/skyerwhyy', '_blank')">НАЧАТЬ РАБОТУ</button>
+                    <p>и мы покажем вам верное направление для достижения успеха</p>
+                </div>
+                <button class="btn back-btn" onclick="showPage('main-page')">ВЕРНУТЬСЯ НАЗАД</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Страница Услуг -->
+    <div id="services-page" class="page">
+        <div class="page-content">
+            <h1 class="section-title">УСЛУГИ</h1>
+            <div class="menu">
+                <button class="btn" onclick="showPage('editing-page')">МОНТАЖ</button>
+                <button class="btn" onclick="showPage('production-page')">ПРОДЮСИРОВАНИЕ</button>
+                <button class="btn" onclick="showPage('programming-page')">ПРОГРАММИРОВАНИЕ</button>
+                <button class="btn back-btn" onclick="showPage('main-page')">ВЕРНУТЬСЯ НАЗАД</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Страница Монтажа -->
+    <div id="editing-page" class="page">
+        <div class="page-content">
+            <h1 class="service-title">МОНТАЖ</h1>
+            <div class="service-card">
+                <div class="premium-badge">Премиум качество</div>
+                <h2>1. Объёмный Формат</h2>
+                <p>Наши успешные проекты в этом формате</p>
+                <p>Беспроигрышное решение для раскрутки вашего личного бренда с нуля, с тестированием различных тематик и концепций.</p>
+                <p>Топовые инфлюенсеры набирают миллионы просмотров благодаря этому формату.</p>
+                <p>Включает: Нарезку + Субтитры + Музыкальное сопровождение</p>
+                <p>Оптимальное количество роликов в день: 8 — 15</p>
+                <p>Идеально подходит для создания рилсов из интервью на YouTube — не требуется время на съёмку.</p>
+                <p>Вы предоставляете длинное видео — мы его нарезаем — вы публикуете в Instagram и TikTok — получаете просмотры и клиентов.</p>
+                <div class="price">₽750/рилс</div>
+                <div class="price">(от 50 роликов — ₽550/рилс)</div>
+            </div>
+            
+            <div class="service-card delayed-appear">
+                <div class="premium-badge">Эксперт уровень</div>
+                <h2>2. Экспертный Формат</h2>
+                <p>Наши проекты в этом формате</p>
+                <p>Лучший выбор для максимального раскрытия вашей экспертизы для целевой аудитории и привлечения крупных клиентов.</p>
+                <p>Включает: Максимальная динамика + Графика + Работа с текстом + Учет ваших пожеланий и материалов + Разработка уникального стиля + Цветокоррекция</p>
+                <p>Оптимальное количество роликов в день: 2 — 4</p>
+                <p>Высший уровень монтажа на рынке рилсов.</p>
+                <p>Тот самый формат, который вы видите у предпринимателей с миллионными охватами.</p>
+                <div class="price">₽3500/рилс</div>
+                <div class="price">(от 5 роликов — ₽3000/рилс)</div>
+            </div>
+            
+            <div class="service-card delayed-appear">
+                <h2>ГОРИЗОНТАЛЬНЫЕ ВИДЕО (YouTube)</h2>
+                
+                <h3>1. Разговорный Формат</h3>
+                <p>Наши проекты в этом формате</p>
+                <p>Этот формат создает высокововлеченную аудиторию, увлеченную вашей личностью.</p>
+                <p>Помогает раскрыться, завоевать доверие, привлечь самую лояльную аудиторию.</p>
+                <div class="price">500 — 1000₽/мин</div>
+                
+                <h3>2. Обучающий/Экспертный Формат</h3>
+                <p>Наши проекты в этом формате</p>
+                <p>Широкая аудитория, высокие просмотры, интенсивная динамика.</p>
+                <p>Подходит всем, кто стремится к быстрому росту и четко понимает, что хочет реализовать в монтаже.</p>
+                <div class="price">1500 — 3000₽/мин</div>
+                
+                <h3>3. Подкасты</h3>
+                <p>Стоимость зависит от количества камер и продолжительности.</p>
+                <div class="price">25 — 50 тыс₽ за весь подкаст</div>
+            </div>
+            
+            <button class="btn back-btn delayed-appear" onclick="showPage('services-page')">ВЕРНУТЬСЯ НАЗАД</button>
+        </div>
+    </div>
+
+    <!-- Страница Продюсирования -->
+    <div id="production-page" class="page">
+        <div class="page-content">
+            <h1 class="service-title">ПРОДЮСИРОВАНИЕ</h1>
+            <div class="service-card">
+                <h2>ЧТО ВКЛЮЧЕНО И ЧТО ВЫ ПОЛУЧИТЕ</h2>
+                
+                <div class="highlight">
+                    <h3>🎯 Определение формата и ниши</h3>
+                    <p>Определим ваш формат, нишу и тематики</p>
+                </div>
+                
+                <div class="highlight">
+                    <h3>📋 Полный план действий</h3>
+                    <p>Детальный план: что, как, где и в каком объеме снимать</p>
+                </div>
+                
+                <div class="highlight">
+                    <h3>💰 Монетизация</h3>
+                    <p>Стратегия монетизации в кратчайшие сроки</p>
+                </div>
+                
+                <div class="highlight">
+                    <h3>📞 4 консультации</h3>
+                    <p>Еженедельные консультации на протяжении месяца</p>
+                </div>
+                
+                <div class="highlight">
+                    <h3>💬 Личные сообщения</h3>
+                    <p>Работа со мной в личных сообщениях без ограничений. При возникновении вопросов или необходимости обсудить работу — сразу пишите мне, и я отвечу</p>
+                </div>
+                
+                <div class="highlight">
+                    <h3>🔥 Максимальная вовлечённость</h3>
+                    <p>Работаю на результат и выкладываюсь на 101%</p>
+                </div>
+            </div>
+            
+            <div class="service-card delayed-appear">
+                <h2>РЕЗУЛЬТАТ</h2>
+                
+                <div class="highlight">
+                    <h3>🚀 Готовность к успеху</h3>
+                    <p>Вы получаете абсолютно всё необходимое для достижения первых результатов и продаж в медиа</p>
+                </div>
+                
+                <div class="price">Стоимость услуги: 100 000 ₽</div>
+            </div>
+            
+            <button class="btn back-btn delayed-appear" onclick="showPage('services-page')">ВЕРНУТЬСЯ НАЗАД</button>
+        </div>
+    </div>
+
+    <!-- Страница Программирования -->
+    <div id="programming-page" class="page">
+        <div class="page-content">
+            <h1 class="service-title">ПРОГРАММИРОВАНИЕ</h1>
+            <div class="service-card">
+                <h2>Создадим для вас Telegram бота</h2>
+                <p>Мы разработаем функционального Telegram бота, который обеспечит удобство взаимодействия с вашими клиентами, позволит эффективно представить ваш продукт или услуги и автоматизирует ключевые бизнес-процессы.</p>
+                
+                <p>Наши боты:</p>
+                <ul class="service-list">
+                    <li>Обеспечивают круглосуточную поддержку клиентов</li>
+                    <li>Представляют информацию о ваших услугах в интерактивном формате</li>
+                    <li>Собирают заявки и обрабатывают запросы</li>
+                    <li>Интегрируются с вашей CRM-системой</li>
+                    <li>Проводят опросы и собирают обратную связь</li>
+                    <li>Автоматизируют процесс продаж</li>
+                </ul>
+                
+                <p>Мы создаем ботов с индивидуальным дизайном, учитывающим специфику вашего бизнеса и целевой аудитории. Каждый бот проходит тщательное тестирование перед запуском.</p>
+                
+                <div class="price">Стоимость от 7500 рублей</div>
+            </div>
+            
+            <button class="btn back-btn delayed-appear" onclick="showPage('services-page')">ВЕРНУТЬСЯ НАЗАД</button>
+        </div>
+    </div>
+
+    <!-- Страница Кейсов -->
+    <div id="cases-page" class="page">
+        <div class="page-content">
+            <h1 class="section-title">КЕЙСЫ</h1>
+            <div class="service-card">
+                <h2>Мы создаём <span class="text-highlight">САМЫЙ ЭФФЕКТИВНЫЙ И ПРОДАЮЩИЙ</span> контент</h2>
+                <p>Поэтому сотрудничаем с ведущими инфлюенсерами СНГ в медиапространстве:</p>
+                
+                <div class="client-logos">
+                    <div class="client-logo">- Глеб Соломин (878 тыс. подписчиков)</div>
+                    <div class="client-logo">- PITBIT (40 тыс. подписчиков)</div>
+                    <div class="client-logo">- Артём Бриус (1 млн. подписчиков в Instagram и огромная аудитория в Telegram)</div>
+                    <div class="client-logo">- Vlad Mishustin (193 тыс. подписчиков)</div>
+                    <div class="client-logo">- Sokol Finance (13,2 тыс. подписчиков)</div>
+                </div>
+            </div>
+            
+            <button class="btn back-btn delayed-appear" onclick="showPage('main-page')">ВЕРНУТЬСЯ НАЗАД</button>
+        </div>
+    </div>
+
+    <!-- Страница Основателя -->
+    <div id="founder-page" class="page">
+        <div class="page-content">
+            <h1 class="service-title">ОСНОВАТЕЛЬ АГЕНСТВА</h1>
+            <div class="founder-section">
+                <h2>КТО Я И ПОЧЕМУ МНЕ СТОИТ ДОВЕРЯТЬ?</h2>
+            </div>
+            
+            <div class="founder-section delayed-appear">
+                <h3>Профессиональный путь</h3>
+                <p>Заработал 5000 $ на монтаже видео, а затем перешел в сферу продюсирования, где достиг первых 10 000$ доходов.</p>
+            </div>
+            
+            <div class="founder-section delayed-appear">
+                <h3>Результаты для клиентов</h3>
+                <p>Каждый клиент остался доволен сотрудничеством и убедился в моём профессионализме, получив значительные охваты и заинтересованность в своих продуктах.</p>
+            </div>
+            
+            <div class="founder-section delayed-appear">
+                <h3>Ваши перспективы</h3>
+                <p>С моей помощью ваш доход может вырасти в несколько раз, но вы, как обычно, можете упустить это предложение. Остались? Тогда напишите мне и готовьтесь к новым достижениям!</p>
+            </div>
+            
+            <button class="btn btn-primary pulse delayed-appear" onclick="window.open('https://t.me/skyerwhyy', '_blank')">ЗАКАЗАТЬ ПРОДЮСИРОВАНИЕ</button>
+            
+            <button class="btn back-btn delayed-appear" onclick="showPage('main-page')">ВЕРНУТЬСЯ НАЗАД</button>
+        </div>
+    </div>
+
+    <script>
+        // Переменная для отслеживания текущей страницы
+        let currentPage = 'main-page';
+        let isTransitioning = false;
+
+        // Функция для переключения страниц
+        function showPage(pageId) {
+            if (isTransitioning || currentPage === pageId) return;
+            
+            isTransitioning = true;
+            currentPage = pageId;
+            
+            // Скрыть все страницы
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Показать выбранную страницу
+            setTimeout(() => {
+                document.getElementById(pageId).classList.add('active');
+                
+                // Особый сценарий для страницы агентства
+                if (pageId === 'agency-page') {
+                    // Показать заголовок
+                    document.getElementById('agency-title').classList.add('active');
+                    document.getElementById('agency-content').classList.remove('active');
+                    
+                    // Через 3 секунды скрыть заголовок и показать контент
+                    setTimeout(() => {
+                        document.getElementById('agency-title').classList.remove('active');
+                        document.getElementById('agency-content').classList.add('active');
+                    }, 3000);
+                }
+                
+                isTransitioning = false;
+            }, 50);
+            
+            // Прокрутка к верху страницы
+            window.scrollTo(0, 0);
+        }
+
+        // Инициализация анимации для главной страницы
+        window.onload = function() {
+            const mainTitle = document.querySelector('.main-title');
+            mainTitle.classList.add('fade-in');
+        };
+    </script>
+</body>
+</html>
