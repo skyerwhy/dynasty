@@ -19,7 +19,7 @@
             --dark: #111111;
             --gray: #2A2A2A;
             --light-gray: #3A3A3A;
-            --transition: all 0.5s ease;
+            --transition: all 0.6s ease;
         }
 
         body {
@@ -44,16 +44,19 @@
             top: 0;
             left: 0;
             opacity: 0;
-            transition: opacity 0.5s ease;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
         }
 
         .page.active {
             display: flex;
             opacity: 1;
+            transform: translateY(0);
         }
 
         .page.fade-out {
             opacity: 0;
+            transform: translateY(-20px);
         }
 
         h1, h2, h3 {
@@ -78,18 +81,15 @@
         @keyframes titlePulse {
             0% {
                 transform: scale(1);
-            }
-            25% {
-                transform: scale(1.03);
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
             }
             50% {
-                transform: scale(0.98);
-            }
-            75% {
-                transform: scale(1.01);
+                transform: scale(1.03);
+                text-shadow: 0 0 25px rgba(255, 255, 255, 0.8), 0 0 35px rgba(255, 215, 0, 0.4);
             }
             100% {
                 transform: scale(1);
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
             }
         }
 
@@ -113,6 +113,7 @@
             gap: 15px;
             width: 100%;
             max-width: 350px;
+            margin-top: 20px;
         }
 
         .btn {
@@ -211,7 +212,7 @@
             border-radius: 15px;
             opacity: 0;
             transform: translateY(20px);
-            transition: all 0.5s ease;
+            transition: all 0.8s ease;
         }
 
         .content-block.active {
@@ -310,7 +311,7 @@
             border-radius: 15px;
             opacity: 0;
             transform: translateY(20px);
-            transition: all 0.5s ease;
+            transition: all 0.8s ease;
         }
 
         .service-card.active {
@@ -393,7 +394,7 @@
             border-radius: 15px;
             opacity: 0;
             transform: translateY(20px);
-            transition: all 0.5s ease;
+            transition: all 0.8s ease;
         }
 
         .founder-section.active {
@@ -430,7 +431,7 @@
         }
 
         .section-title {
-            font-size: clamp(1.8rem, 8vw, 2.5rem);
+            font-size: clamp(1.5rem, 6vw, 2.2rem);
             color: var(--primary);
             font-weight: 700;
             letter-spacing: 2px;
@@ -439,12 +440,30 @@
             text-align: center;
             opacity: 0;
             transform: translateY(-20px);
-            transition: all 0.5s ease;
+            transition: all 1s ease;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            animation: titleGlow 4s ease-in-out infinite;
+        }
+
+        @keyframes titleGlow {
+            0% {
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            }
+            50% {
+                text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 215, 0, 0.5);
+            }
+            100% {
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            }
         }
 
         .section-title.active {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        .long-title {
+            font-size: clamp(1.3rem, 5vw, 1.8rem);
         }
 
         /* Мобильная адаптация */
@@ -497,6 +516,14 @@
             .founder-section {
                 padding: 20px;
             }
+            
+            .section-title {
+                font-size: clamp(1.4rem, 5vw, 2rem);
+            }
+            
+            .long-title {
+                font-size: clamp(1.2rem, 4.5vw, 1.6rem);
+            }
         }
 
         @media (max-width: 480px) {
@@ -525,6 +552,14 @@
 
             h3 {
                 font-size: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: clamp(1.3rem, 4.5vw, 1.8rem);
+            }
+            
+            .long-title {
+                font-size: clamp(1.1rem, 4vw, 1.5rem);
             }
         }
     </style>
@@ -646,7 +681,7 @@
     <!-- Страница Продюсирования -->
     <div id="production-page" class="page">
         <div class="centered">
-            <h1 class="section-title">ПРОДЮСИРОВАНИЕ</h1>
+            <h1 class="section-title long-title">ПРОДЮСИРОВАНИЕ</h1>
         </div>
         <div class="page-content">
             <div class="service-card">
@@ -701,7 +736,7 @@
     <!-- Страница Программирования -->
     <div id="programming-page" class="page">
         <div class="centered">
-            <h1 class="section-title">ПРОГРАММИРОВАНИЕ</h1>
+            <h1 class="section-title long-title">ПРОГРАММИРОВАНИЕ</h1>
         </div>
         <div class="page-content">
             <div class="service-card">
@@ -753,7 +788,7 @@
     <!-- Страница Основателя -->
     <div id="founder-page" class="page">
         <div class="centered">
-            <h1 class="section-title">ОСНОВАТЕЛЬ АГЕНСТВА</h1>
+            <h1 class="section-title">ОСНОВАТЕЛЬ</h1>
         </div>
         <div class="page-content">
             <div class="founder-section">
@@ -794,7 +829,13 @@
             const currentPageElement = document.getElementById(currentPage);
             currentPageElement.classList.add('fade-out');
             
-            // Через 300мс показать новую страницу
+            // Скрыть контент текущей страницы
+            const currentContent = currentPageElement.querySelectorAll('.content-block, .service-card, .founder-section, .section-title');
+            currentContent.forEach(block => {
+                block.classList.remove('active');
+            });
+            
+            // Через 400мс показать новую страницу
             setTimeout(() => {
                 // Скрыть все страницы
                 document.querySelectorAll('.page').forEach(page => {
@@ -812,17 +853,17 @@
                     contentBlocks.forEach((block, index) => {
                         setTimeout(() => {
                             block.classList.add('active');
-                        }, index * 100);
+                        }, index * 150);
                     });
                     
                     isTransitioning = false;
-                }, 100);
+                }, 200);
                 
                 currentPage = pageId;
                 
                 // Прокрутка к верху страницы
                 window.scrollTo(0, 0);
-            }, 300);
+            }, 400);
         }
 
         // Инициализация
