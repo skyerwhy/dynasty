@@ -274,6 +274,14 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 50px;
             display: block;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease;
+        }
+
+        .back-btn.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .page-content {
@@ -465,7 +473,7 @@
             font-size: clamp(1.3rem, 5vw, 1.8rem);
         }
 
-        /* Центрирование главного меню */
+        /* Центрирование главного меню и страницы услуг */
         .main-container {
             display: flex;
             flex-direction: column;
@@ -617,10 +625,8 @@
 
     <!-- Страница Услуг -->
     <div id="services-page" class="page">
-        <div class="centered">
+        <div class="main-container">
             <h1 class="section-title">УСЛУГИ</h1>
-        </div>
-        <div class="page-content">
             <div class="menu">
                 <button class="btn" onclick="showPage('editing-page')">МОНТАЖ</button>
                 <button class="btn" onclick="showPage('production-page')">ПРОДЮСИРОВАНИЕ</button>
@@ -839,7 +845,7 @@
             currentPageElement.classList.add('fade-out');
             
             // Скрыть контент текущей страницы
-            const currentContent = currentPageElement.querySelectorAll('.content-block, .service-card, .founder-section, .section-title');
+            const currentContent = currentPageElement.querySelectorAll('.content-block, .service-card, .founder-section, .section-title, .back-btn, .menu, .main-title');
             currentContent.forEach(block => {
                 block.classList.remove('active');
             });
@@ -858,7 +864,7 @@
                 
                 // Показать контент с задержкой
                 setTimeout(() => {
-                    const contentBlocks = newPage.querySelectorAll('.content-block, .service-card, .founder-section, .section-title');
+                    const contentBlocks = newPage.querySelectorAll('.content-block, .service-card, .founder-section, .section-title, .back-btn, .menu, .main-title');
                     contentBlocks.forEach((block, index) => {
                         setTimeout(() => {
                             block.classList.add('active');
