@@ -483,17 +483,6 @@
             width: 100%;
         }
 
-        /* Специальный контейнер для страницы услуг */
-        .services-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            width: 100%;
-            padding-top: 60px;
-        }
-
         /* Мобильная адаптация */
         @media (max-width: 768px) {
             .page {
@@ -552,10 +541,6 @@
             .long-title {
                 font-size: clamp(1.2rem, 4.5vw, 1.6rem);
             }
-            
-            .services-container {
-                padding-top: 40px;
-            }
         }
 
         @media (max-width: 480px) {
@@ -592,10 +577,6 @@
             
             .long-title {
                 font-size: clamp(1.1rem, 4vw, 1.5rem);
-            }
-            
-            .services-container {
-                padding-top: 30px;
             }
         }
     </style>
@@ -644,7 +625,7 @@
 
     <!-- Страница Услуг -->
     <div id="services-page" class="page">
-        <div class="services-container">
+        <div class="main-container">
             <h1 class="section-title">УСЛУГИ</h1>
             <div class="menu">
                 <button class="btn" onclick="showPage('editing-page')">МОНТАЖ</button>
@@ -737,8 +718,8 @@
                 </div>
                 
                 <div class="highlight">
-                    <h3>📞 4 консультации</h3>
-                    <p>Еженедельные консультации на протяжении месяца</p>
+                    <h3>📞 12 консультаций</h3>
+                    <p>Еженедельные консультации на протяжении трёх</p>
                 </div>
                 
                 <div class="highlight">
@@ -760,7 +741,7 @@
                     <p>Вы получаете абсолютно всё необходимое для достижения первых результатов и продаж в медиа</p>
                 </div>
                 
-                <div class="price">Стоимость услуги: 100 000 ₽</div>
+                <div class="price">Стоимость услуги: 200 000 ₽</div>
             </div>
             
             <button class="btn back-btn" onclick="showPage('services-page')">ВЕРНУТЬСЯ НАЗАД</button>
