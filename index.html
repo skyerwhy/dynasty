@@ -76,6 +76,13 @@
             position: relative;
             text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
             animation: titlePulse 6s ease-in-out infinite;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .main-title:hover {
+            color: var(--accent);
+            transform: scale(1.05);
         }
 
         @keyframes titlePulse {
@@ -585,7 +592,7 @@
     <!-- Главная страница -->
     <div id="main-page" class="page active">
         <div class="main-container">
-            <h1 class="main-title">DYNASTY AGENCY</h1>
+            <h1 class="main-title" onclick="window.open('https://t.me/dynasty_agency', '_blank')">DYNASTY AGENCY</h1>
             <div class="menu">
                 <button class="btn" onclick="showPage('agency-page')">АГЕНСТВО</button>
                 <button class="btn" onclick="showPage('services-page')">УСЛУГИ</button>
@@ -771,6 +778,28 @@
                 <p>Мы создаем ботов с индивидуальным дизайном, учитывающим специфику вашего бизнеса и целевой аудитории. Каждый бот проходит тщательное тестирование перед запуском.</p>
                 
                 <div class="price">Стоимость от 7500 рублей</div>
+            </div>
+            
+            <!-- НОВАЯ УСЛУГА: Разработка сайтов -->
+            <div class="service-card">
+                <h2>Разработка сайтов</h2>
+                <p>Мы создаем современные, адаптивные и функциональные веб-сайты, которые эффективно представляют ваш бренд в интернете и привлекают клиентов.</p>
+                
+                <p>Наши услуги по разработке сайтов:</p>
+                <ul class="service-list">
+                    <li>Создание лендингов для продвижения продуктов и услуг</li>
+                    <li>Разработка корпоративных сайтов для бизнеса</li>
+                    <li>Создание интернет-магазинов с полным функционалом</li>
+                    <li>Разработка сайтов-визиток для специалистов и экспертов</li>
+                    <li>Адаптивный дизайн для всех устройств</li>
+                    <li>Интеграция с CRM, платежными системами и аналитикой</li>
+                    <li>Оптимизация для поисковых систем (SEO)</li>
+                    <li>Техническая поддержка и обслуживание</li>
+                </ul>
+                
+                <p>Мы используем современные технологии и фреймворки для создания быстрых, безопасных и удобных в использовании сайтов. Каждый проект проходит полный цикл разработки: от проектирования и дизайна до тестирования и запуска.</p>
+                
+                <div class="price">Стоимость от 15000 рублей</div>
             </div>
             
             <button class="btn back-btn" onclick="showPage('services-page')">ВЕРНУТЬСЯ НАЗАД</button>
