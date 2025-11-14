@@ -490,6 +490,38 @@
             width: 100%;
         }
 
+        /* Стили для кнопок заказа */
+        .order-btn {
+            background: rgba(255, 215, 0, 0.1);
+            color: var(--primary);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            padding: 14px 25px;
+            margin-top: 20px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 50px;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+            display: block;
+            width: 100%;
+            max-width: 250px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .order-btn:hover {
+            background: rgba(255, 215, 0, 0.15);
+            border-color: rgba(255, 215, 0, 0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.2);
+        }
+
         /* Мобильная адаптация */
         @media (max-width: 768px) {
             .page {
@@ -548,6 +580,11 @@
             .long-title {
                 font-size: clamp(1.2rem, 4.5vw, 1.6rem);
             }
+            
+            .order-btn {
+                padding: 12px 20px;
+                font-size: 0.85rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -584,6 +621,11 @@
             
             .long-title {
                 font-size: clamp(1.1rem, 4vw, 1.5rem);
+            }
+            
+            .order-btn {
+                padding: 10px 18px;
+                font-size: 0.8rem;
             }
         }
     </style>
@@ -638,6 +680,7 @@
                 <button class="btn" onclick="showPage('editing-page')">МОНТАЖ</button>
                 <button class="btn" onclick="showPage('production-page')">ПРОДЮСИРОВАНИЕ</button>
                 <button class="btn" onclick="showPage('programming-page')">ПРОГРАММИРОВАНИЕ</button>
+                <button class="btn" onclick="showPage('design-page')">ДИЗАЙН</button>
                 <button class="btn back-btn" onclick="showPage('main-page')">ВЕРНУТЬСЯ НАЗАД</button>
             </div>
         </div>
@@ -661,6 +704,7 @@
                 <p>Вы предоставляете длинное видео — мы его нарезаем — вы публикуете в Instagram и TikTok — получаете просмотры и клиентов.</p>
                 <div class="price">₽750/рилс</div>
                 <div class="price">(от 50 роликов — ₽550/рилс)</div>
+                <button class="order-btn" onclick="window.open('https://t.me/skyerwhyy', '_blank')">СДЕЛАТЬ ЗАКАЗ</button>
             </div>
             
             <div class="service-card">
@@ -674,6 +718,7 @@
                 <p>Тот самый формат, который вы видите у предпринимателей с миллионными охватами.</p>
                 <div class="price">₽3500/рилс</div>
                 <div class="price">(от 5 роликов — ₽3000/рилс)</div>
+                <button class="order-btn" onclick="window.open('https://t.me/skyerwhyy', '_blank')">СДЕЛАТЬ ЗАКАЗ</button>
             </div>
             
             <div class="service-card">
@@ -694,6 +739,8 @@
                 <h3>3. Подкасты</h3>
                 <p>Стоимость зависит от количества камер и продолжительности.</p>
                 <div class="price">25 — 50 тыс₽ за весь подкаст</div>
+                
+                <button class="order-btn" onclick="window.open('https://t.me/skyerwhyy', '_blank')">СДЕЛАТЬ ЗАКАЗ</button>
             </div>
             
             <button class="btn back-btn" onclick="showPage('services-page')">ВЕРНУТЬСЯ НАЗАД</button>
@@ -726,7 +773,7 @@
                 
                 <div class="highlight">
                     <h3>📞 12 консультаций</h3>
-                    <p>Еженедельные консультации на протяжении трёх</p>
+                    <p>Еженедельные консультации на протяжении трёх недель</p>
                 </div>
                 
                 <div class="highlight">
@@ -749,6 +796,8 @@
                 </div>
                 
                 <div class="price">Стоимость услуги: 200 000 ₽</div>
+                
+                <button class="order-btn" onclick="window.open('https://t.me/skyerwhyy', '_blank')">СДЕЛАТЬ ЗАКАЗ</button>
             </div>
             
             <button class="btn back-btn" onclick="showPage('services-page')">ВЕРНУТЬСЯ НАЗАД</button>
@@ -778,6 +827,8 @@
                 <p>Мы создаем ботов с индивидуальным дизайном, учитывающим специфику вашего бизнеса и целевой аудитории. Каждый бот проходит тщательное тестирование перед запуском.</p>
                 
                 <div class="price">Стоимость от 7500 рублей</div>
+                
+                <button class="order-btn" onclick="window.open('https://t.me/skyerwhyy', '_blank')">СДЕЛАТЬ ЗАКАЗ</button>
             </div>
             
             <!-- НОВАЯ УСЛУГА: Разработка сайтов -->
@@ -800,6 +851,41 @@
                 <p>Мы используем современные технологии и фреймворки для создания быстрых, безопасных и удобных в использовании сайтов. Каждый проект проходит полный цикл разработки: от проектирования и дизайна до тестирования и запуска.</p>
                 
                 <div class="price">Стоимость от 15000 рублей</div>
+                
+                <button class="order-btn" onclick="window.open('https://t.me/skyerwhyy', '_blank')">СДЕЛАТЬ ЗАКАЗ</button>
+            </div>
+            
+            <button class="btn back-btn" onclick="showPage('services-page')">ВЕРНУТЬСЯ НАЗАД</button>
+        </div>
+    </div>
+
+    <!-- НОВАЯ СТРАНИЦА: Дизайн -->
+    <div id="design-page" class="page">
+        <div class="centered">
+            <h1 class="section-title">ДИЗАЙН</h1>
+        </div>
+        <div class="page-content">
+            <div class="service-card">
+                <h2>Профессиональный дизайн для вашего бренда</h2>
+                <p>Мы создаем уникальный и запоминающийся визуальный стиль для вашего бренда, который поможет выделиться среди конкурентов и привлечь внимание целевой аудитории.</p>
+                
+                <p>Наши услуги по дизайну:</p>
+                <ul class="service-list">
+                    <li>Оформление профилей в социальных сетях</li>
+                    <li>Создание баннеров и обложек</li>
+                    <li>Разработка аватарок и иконок</li>
+                    <li>Дизайн превью для видео</li>
+                    <li>Создание фирменного стиля</li>
+                    <li>Разработка логотипов</li>
+                    <li>Дизайн презентаций</li>
+                    <li>Создание инфографики</li>
+                </ul>
+                
+                <p>Мы учитываем специфику вашей ниши, целевую аудиторию и современные тренды в дизайне. Каждый проект разрабатывается индивидуально с учетом ваших пожеланий и требований.</p>
+                
+                <div class="price">Стоимость от 1000 рублей</div>
+                
+                <button class="order-btn" onclick="window.open('https://t.me/skyerwhyy', '_blank')">СДЕЛАТЬ ЗАКАЗ</button>
             </div>
             
             <button class="btn back-btn" onclick="showPage('services-page')">ВЕРНУТЬСЯ НАЗАД</button>
