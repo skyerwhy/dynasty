@@ -522,6 +522,36 @@
             box-shadow: 0 10px 20px rgba(255, 215, 0, 0.2);
         }
 
+        /* Стили для кнопки портфолио */
+        .portfolio-btn {
+            background: rgba(255, 215, 0, 0.1);
+            color: var(--primary);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            padding: 16px 30px;
+            margin: 25px auto;
+            text-align: center;
+            text-decoration: none;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border-radius: 50px;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+            display: block;
+            width: 100%;
+            max-width: 280px;
+        }
+
+        .portfolio-btn:hover {
+            background: rgba(255, 215, 0, 0.15);
+            border-color: rgba(255, 215, 0, 0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.2);
+        }
+
         /* Мобильная адаптация */
         @media (max-width: 768px) {
             .page {
@@ -585,6 +615,11 @@
                 padding: 12px 20px;
                 font-size: 0.85rem;
             }
+            
+            .portfolio-btn {
+                padding: 14px 25px;
+                font-size: 0.9rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -626,6 +661,11 @@
             .order-btn {
                 padding: 10px 18px;
                 font-size: 0.8rem;
+            }
+            
+            .portfolio-btn {
+                padding: 12px 20px;
+                font-size: 0.85rem;
             }
         }
     </style>
@@ -773,7 +813,7 @@
                 
                 <div class="highlight">
                     <h3>📞 12 консультаций</h3>
-                    <p>Еженедельные консультации на протяжении трёх недель</p>
+                    <p>Еженедельные консультации на протяжении трёх</p>
                 </div>
                 
                 <div class="highlight">
@@ -883,7 +923,7 @@
                 
                 <p>Мы учитываем специфику вашей ниши, целевую аудиторию и современные тренды в дизайне. Каждый проект разрабатывается индивидуально с учетом ваших пожеланий и требований.</p>
                 
-                <div class="price">Стоимость от 1000 рублей</div>
+                <div class="price">Стоимость от 5000 рублей</div>
                 
                 <button class="order-btn" onclick="window.open('https://t.me/skyerwhyy', '_blank')">СДЕЛАТЬ ЗАКАЗ</button>
             </div>
@@ -909,6 +949,9 @@
                     <div class="client-logo">- Vlad Mishustin (193 тыс. подписчиков)</div>
                     <div class="client-logo">- Sokol Finance (13,2 тыс. подписчиков)</div>
                 </div>
+                
+                <!-- НОВАЯ КНОПКА: Портфолио -->
+                <button class="portfolio-btn" onclick="window.open('https://t.me/portfoliodynasty', '_blank')">ПОРТФОЛИО</button>
             </div>
             
             <button class="btn back-btn" onclick="showPage('main-page')">ВЕРНУТЬСЯ НАЗАД</button>
